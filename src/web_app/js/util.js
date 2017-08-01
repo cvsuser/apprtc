@@ -91,7 +91,7 @@ function sendUrlRequest(method, url, async, body) {
 //     }
 //   ]
 // }
-function requestIceServers(iceServerRequestUrl, iceTransports) {
+function requestIceServers_2(iceServerRequestUrl, iceTransports) {
   return new Promise(function(resolve, reject) {
     sendAsyncUrlRequest('POST', iceServerRequestUrl).then(function(response) {
       var iceServerRequestResponse = parseJSON(response);
@@ -109,6 +109,25 @@ function requestIceServers(iceServerRequestUrl, iceTransports) {
       return;
     });
   });
+}
+
+function requestIceServers(iceServerRequestUrl, iceTransports) { 
+  return new Promise(function(resolve, reject) {
+      var servers = 
+      [
+        { 
+          credential: "test", 
+          username: "test", 
+          urls: [
+            "turn:54.169.128.194:3478?transport=udp",
+            "turn:54.169.128.194:3478?transport=tcp",
+            "turn:52.221.30.176:3478?transport=udp"
+          ] 
+        }
+      ];
+      resolve(servers); 
+    }
+  );
 }
 
 // Parse the supplied JSON, or return null if parsing fails.
